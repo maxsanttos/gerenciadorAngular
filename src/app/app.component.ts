@@ -1,14 +1,25 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [CommonModule, RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'desafio';
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    // Verificar se o usuário está autenticado (por exemplo, se o token está presente no localStorage)
+    const token = localStorage.getItem('token');
+    console.log(token);
+
+    if (token) {
+      // Se o usuário estiver autenticado, redirecione para a tela de tarefas
+      this.router.navigate(['/login']);
+    } else {
+      // Se o usuário não estiver autenticado, redirecione para a tela de login
+      this.router.navigate(['/login']);
+    }
+  }
 }

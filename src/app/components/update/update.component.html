@@ -1,0 +1,43 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Task Manager</span>
+    <span class="example-spacer"></span>
+    <button mat-raised-button color="accent" (click)="gotBack()">Back
+      <mat-icon>logout</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog" id="modalSignin">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content rounded-4 shadow">
+      <div class="modal-header p-5 pb-4 border-bottom-0">
+        <h1 class="fw-bold mb-0 fs-2">Atualizando a Tarefa</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-5 pt-0">
+        <form (ngSubmit)="updateTask()" *ngIf="task">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Title</span>
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" [(ngModel)]="task.title" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="input-group">
+            <span class="input-group-text">Description</span>
+            <textarea class="form-control" aria-label="With textarea" [(ngModel)]="task.description" [ngModelOptions]="{standalone: true}"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="status" class="form-label">Select me</label>
+            <select class="form-select" id="status" [(ngModel)]="task.status" [ngModelOptions]="{standalone: true}">
+              <option value="PENDING">PENDING</option>
+              <option value="IN_PROGRESS">IN_PROGRESS</option>
+              <option value="COMPLETED">COMPLETED</option>
+            </select>
+            <div class="form-text">Your role Choice</div>
+          </div>
+          <hr class="my-4">
+          <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Update Task</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
